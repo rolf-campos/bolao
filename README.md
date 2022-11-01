@@ -11,7 +11,7 @@ Points for correct predictions:
 - 2 points for correctly predicting each team's goal count, contingent on correctly predicting the winner or tie,
 - 5 points for correctly predicting each country advancing to the Round of 16.
 
-Maximum points in Stage 1: 48*10 + 16*5 = 560 
+Maximum points in Stage 1: 48 x 10 + 16 x 5 = 560 
 
 ### Stage 2
 Participants forecast who advances in each game of Stage 2, (including winners in the final and in the 3rd place game).
