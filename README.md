@@ -1,4 +1,3 @@
 # Bolao da Copa
 
-## Current standings
-Click [here](/table/standings.csv)
+Click [here](/table/standings.csv) for latest standings
