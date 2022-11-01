@@ -28,14 +28,10 @@ Maximum points in Stage 2: 175
 
 ## Other participants
 ### Macaco (random)
-- in stage 1, chooses goals at random with uniform probability on support `{0, 1, 2}`
-- in stage 2, chooses team that advances at random, with equal probability
+- in stage 1, the Macaco chooses goals at random with uniform probability on the support `{0, 1, 2}`;
+- in stage 2, it chooses team that advances at random, with probability 1/2.
 
 ### Donald (wants to make America great again)
-- in stage 1 he predicts that USA will always win. He doesn't really understand the mechanics of the game, so he chooses the score as 5-0 in favor or USA.
-- because he doesn't really care about the rest of the world, he doesn't fill out the rest of the table. We fill in missing results with 0-0 and choose everything undeterminded by selecting the nation that voted most like Putin's Russia in the United Nations General Assembly.
-- in any case, he will not accept the final result if he does not win.
-
-
-
-
+- in stage 1, he predicts that USA will always win by 5-0;
+- because he doesn't care too much about the rest of the world, he doesn't fill out the rest of the table. It is filled with 0-0 and everything undeterminded is resolved by selecting the nation most similar to Russia according to its voting behavior in the United Nations General Assembly;
+- if he does not win, he will not accept the final result.
