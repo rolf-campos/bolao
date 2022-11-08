@@ -1,6 +1,5 @@
 # %% Imports and constants
 import os
-import pandas as pd
 import random
 from openpyxl import load_workbook
 
