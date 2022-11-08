@@ -9,7 +9,8 @@ Participants forecast scores for all the games (48 games).
 Points for correct predictions:
 - 6 points for correctly predicting the game winner (if there is a winner) or the tie,
 - 2 points for correctly predicting each team's goal count, contingent on correctly predicting the winner or tie,
-- 5 points for correctly predicting each country advancing to the Round of 16.
+- 3 points for correctly predicting each country advancing to the Round of 16.
+- 2 additional points for predicting who is first and second in a group.
 
 Maximum points in Stage 1: 48 x 10 + 16 x 5 = 560 
 
@@ -22,14 +23,14 @@ Points for correct predictions:
 - 10 for each country in the Semi-Finals (4 countries),
 - 10 for each country in the Final (2 countries),
 - 10 for the 3rd place,
-- 25 for the champion.
+- 30 for the champion.
 
-Maximum points in Stage 2: 175
+Maximum points in Stage 2: 8 x 10 + 4 x 10 + 2 x 10 + 40 = 180
 
 ## Other participants
 ### Macaco (random)
 - in stage 1, the Macaco chooses goals at random with uniform probability on the support `{0, 1, 2}`;
-- in stage 2, it chooses team that advances at random, with probability 1/2.
+- in stage 2, it chooses the team that advances at random, with probability 1/2.
 
 ### Donald (wants to make America great again)
 - in stage 1, he predicts that USA will always win by 5-0;
