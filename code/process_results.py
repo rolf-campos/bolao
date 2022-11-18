@@ -99,7 +99,7 @@ def points_from_stage_2(df_r, df_g):
     Compute all points in stage 2 for guess df_g based on results in df_r 
     """
     points = 0
-    # Round of 16
+    # Round of 16 (16 points missing here)
     points += points_round_of_16(df_r, df_g)
     # Quarter final
     rows_QF = range(8, 12)
@@ -156,10 +156,12 @@ def points_advancement(df_r, df_g, rows, point_value=10):
     
     points = 0
     # Poimts for getting right the countries that advance
+    print(R16_1_clean + R16_2_clean)
+    print(G16_1 + G16_2)
     for id in R16_1_clean + R16_2_clean:
         if id in G16_1:
             points += point_value
-        elif id in G16_2:
+        if id in G16_2:
             points += point_value
     return points
 
