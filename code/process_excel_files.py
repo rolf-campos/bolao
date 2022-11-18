@@ -118,3 +118,5 @@ if __name__ == '__main__':
     save_predictions(d)
     save_predictions_excel(d)
 
+
+# %%
