@@ -7,7 +7,7 @@ from process_excel_files import load_predictions, remove_superfluous_rows
 
 ROOTDIR = os.path.realpath('..')
 DATA_DIR = os.path.join(ROOTDIR, 'data')
-ASSET_DIR = os.path.join(ROOTDIR, 'assets')
+ASSET_DIR = os.path.join(ROOTDIR, 'data')
 OUTPUT_DIR = os.path.join(ROOTDIR, 'table')
 
 # %%

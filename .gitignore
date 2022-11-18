@@ -129,5 +129,4 @@ dmypy.json
 .pyre/
 
 /raw_data/*.xlsx
-/data/*.csv
 /data/*.xlsx
