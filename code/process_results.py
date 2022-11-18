@@ -1,4 +1,5 @@
 # %%
+from datetime import datetime
 import os
 import pandas as pd
 from process_excel_files import load_predictions, remove_superfluous_rows
@@ -7,6 +8,7 @@ from process_excel_files import load_predictions, remove_superfluous_rows
 ROOTDIR = os.path.realpath('..')
 DATA_DIR = os.path.join(ROOTDIR, 'data')
 ASSET_DIR = os.path.join(ROOTDIR, 'assets')
+OUTPUT_DIR = os.path.join(ROOTDIR, 'table')
 
 # %%
 # Helper functions to load from result/predition files
@@ -138,11 +140,21 @@ def evaluate(stage_2=False):
         columns=['Alias', 'Stage 1', 'Stage 2', 'Total']
         )
     df.sort_values(by='Total', ascending=False, inplace=True)
-    df = df.reset_index()
+    df.insert(0, 'Position', list(range(1, len(df)+1)))
     return df
 
 # %%
 if __name__ == '__main__':
     df = evaluate()
+    # Save with today's date
+    date_today = datetime.today().strftime('%Y-%m-%d')
+    standings_file = os.path.join(OUTPUT_DIR, f'standings_{date_today}.csv')
+    print(f"Saving {standings_file}")
+    df.to_csv(standings_file, index=False, sep=';')
+    # and overwrite the version without a date
+    standings_file_no_date = os.path.join(OUTPUT_DIR, 'standings.csv')
+    print(f"Saving (and probably overwriting) {standings_file_no_date}")
+    df.to_csv(standings_file_no_date, index=False, sep=';')
+
 
 # %%
