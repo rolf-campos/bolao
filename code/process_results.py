@@ -98,20 +98,96 @@ def points_from_stage_2(df_r, df_g):
     """
     Compute all points in stage 2 for guess df_g based on results in df_r 
     """
-    # Define rows
-    rows_R16 = range(0, 8)
-    rows_QF = range(8, 12) 
-    rows_df = range(12, 14)
-    row_3rd = 14
-    row_final = 15
-
+    points = 0
     # Round of 16
-    R16_1 = df_r.iloc[rows_R16, 0].tolist()
-    R16_2 = df_r.iloc[rows_R16, 0].tolist()
+    points += points_round_of_16(df_r, df_g)
+    # Quarter final
+    rows_QF = range(8, 12)
+    points += points_advancement(df_r, df_g, rows_QF)
+    # Semi final
+    rows_SF = range(12, 14)
+    points += points_advancement(df_r, df_g, rows_SF)
+    # Getting to the final
+    row_final = range(15, 16)
+    points += points_advancement(df_r, df_g, row_final)
+    # Identity of champion and 3rd place
+    points += points_winner(df_r, df_g)
+    points += points_winner(df_r, df_g, third_place=True)
+    return points
+
+def points_winner(df_r, df_g, third_place=False):
+    # Parameters
+    if third_place:
+        row = 14
+        point_value = 10
+    else:
+        row = 15
+        point_value = 30
+    # Load results and guess
+    r = df_r.iloc[row, :]  # result
+    g = df_g.iloc[row, :]  # guess
+    # Determine winner
+    if (pd.isna(r[4]) or pd.isna(r[5])):
+        winner = 'Not available yet'
+    elif r[4] > r[5]:
+        winner = r[1]
+    else:
+        winner = r[3]
+    if g[4] > g[5]:
+        winner_g = g[1]
+    else:
+        winner_g = g[3]
+    # Assign points
+    points = 0
+    if winner == winner_g:
+        points += point_value
+    return points
+
+def points_advancement(df_r, df_g, rows, point_value=10):
+    # Results for the round of 16
+    R16_1 = df_r.iloc[rows, 1].tolist()
+    R16_2 = df_r.iloc[rows, 3].tolist()
     # Get rid of NaNs
-    R16_1 = clean(R16_1)
-    R16_2 = clean(R16_2)
-    return 0
+    R16_1_clean = clean(R16_1)
+    R16_2_clean = clean(R16_2)
+    # Predictions for round of 16
+    G16_1 = df_g.iloc[rows, 1].tolist()
+    G16_2 = df_g.iloc[rows, 3].tolist()
+    
+    points = 0
+    # Poimts for getting right the countries that advance
+    for id in R16_1_clean + R16_2_clean:
+        if id in G16_1:
+            points += point_value
+        elif id in G16_2:
+            points += point_value
+    return points
+
+def points_round_of_16(df_r, df_g):
+    # Points from advancing into the round
+    rows_R16 = range(0, 8)
+    points = points_advancement(df_r, df_g, rows_R16, point_value=3)
+
+    # Additional points
+    # Need to infer first and second in group from matches
+    # Locations of first and second in match table
+    A = [(0, 0), (4,1)]
+    C = [(1, 0), (5,1)]
+    E = [(2, 0), (6,1)]
+    G = [(3, 0), (7,1)]
+    B = [(4, 0), (0,1)]
+    D = [(5, 0), (1,1)]
+    F = [(6, 0), (2,1)]
+    H = [(7, 0), (3,1)]
+    groups = [A, B, C, D, E, F, G, H]
+    df_R = df_r[['Team 1', 'Team 2']]  # results
+    df_G = df_g[['Team 1', 'Team 2']]  # guess
+    for group in groups:
+        result_order = (df_R.iloc[group[0]], df_R.iloc[group[1]])
+        guess_order =  (df_G.iloc[group[0]], df_G.iloc[group[1]])
+        if result_order == guess_order:  # both 1st and 2nd correct
+            points += 2
+    return points
 
 def clean(rlist, words=['nan', '<NA>']):
     res = list(rlist)  # make a copy
@@ -130,7 +206,7 @@ def evaluate(stage_2=False):
         df_g1, df_g2 = d[alias]
         points_1 = points_from_stage_1(df_r1, df_g1)
         if stage_2:  # stage 2 has started
-            points_2 = points_from_stage_1(df_r2, df_g2)
+            points_2 = points_from_stage_2(df_r2, df_g2)
         else:
             points_2 = 0
         row = [alias, points_1, points_2, points_1 + points_2]
@@ -145,7 +221,7 @@ def evaluate(stage_2=False):
 
 # %%
 if __name__ == '__main__':
-    df = evaluate()
+    df = evaluate(stage_2=True)
     # Save with today's date
     date_today = datetime.today().strftime('%Y-%m-%d')
     standings_file = os.path.join(OUTPUT_DIR, f'standings_{date_today}.csv')
