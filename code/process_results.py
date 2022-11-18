@@ -103,19 +103,23 @@ def points_from_stage_2(df_r, df_g):
     points += points_round_of_16(df_r, df_g)
     # Quarter final
     rows_QF = range(8, 12)
-    points += points_advancement(df_r, df_g, rows_QF)
+    points += points_round(df_r, df_g, rows_QF)
     # Semi final
     rows_SF = range(12, 14)
-    points += points_advancement(df_r, df_g, rows_SF)
+    points += points_round(df_r, df_g, rows_SF)
     # Getting to the final
     row_final = range(15, 16)
-    points += points_advancement(df_r, df_g, row_final)
+    points += points_round(df_r, df_g, row_final)
     # Identity of champion and 3rd place
     points += points_winner(df_r, df_g)
     points += points_winner(df_r, df_g, third_place=True)
     return points
 
 def points_winner(df_r, df_g, third_place=False):
+    """
+    Award points for correctly guessing the winner
+    of the final and the third place game
+    """
     # Parameters
     if third_place:
         row = 14
@@ -123,7 +127,7 @@ def points_winner(df_r, df_g, third_place=False):
     else:
         row = 15
         point_value = 30
-    # Load results and guess
+    # Load results and guesses
     r = df_r.iloc[row, :]  # result
     g = df_g.iloc[row, :]  # guess
     # Determine winner
@@ -143,36 +147,41 @@ def points_winner(df_r, df_g, third_place=False):
         points += point_value
     return points
 
-def points_advancement(df_r, df_g, rows, point_value=10):
-    # Results for the round of 16
-    R16_1 = df_r.iloc[rows, 1].tolist()
-    R16_2 = df_r.iloc[rows, 3].tolist()
+def points_round(df_r, df_g, rows, point_value=10):
+    """
+    Award points from reaching a certain round
+    The variable "rows" indicates the rows in the df to be evaluated
+    """
+    # Results for the round
+    R_1 = df_r.iloc[rows, 1].tolist()
+    R_2 = df_r.iloc[rows, 3].tolist()
     # Get rid of NaNs
-    R16_1_clean = clean(R16_1)
-    R16_2_clean = clean(R16_2)
-    # Predictions for round of 16
-    G16_1 = df_g.iloc[rows, 1].tolist()
-    G16_2 = df_g.iloc[rows, 3].tolist()
-    
+    R_1_clean = clean(R_1)
+    R_2_clean = clean(R_2)
+    # Predictions for the round
+    G_1 = df_g.iloc[rows, 1].tolist()
+    G_2 = df_g.iloc[rows, 3].tolist()
+    # Award points
     points = 0
-    # Poimts for getting right the countries that advance
-    print(R16_1_clean + R16_2_clean)
-    print(G16_1 + G16_2)
-    for id in R16_1_clean + R16_2_clean:
-        if id in G16_1:
+    for id in R_1_clean + R_2_clean:
+        if id in G_1:
             points += point_value
-        if id in G16_2:
+        if id in G_2:
             points += point_value
     return points
 
 def points_round_of_16(df_r, df_g):
-    # Points from advancing into the round
+    """
+    Award points for reaching the round of 16.
+    Also awards extra points for getting the order right.
+    """
+    # Points from advancing into the round of 16
     rows_R16 = range(0, 8)
-    points = points_advancement(df_r, df_g, rows_R16, point_value=3)
+    points = points_round(df_r, df_g, rows_R16, point_value=3)
 
-    # Additional points
+    # Additional points (1st and 2nd in group)
     # Need to infer first and second in group from matches
-    # Locations of first and second in match table
+    # Locations of first and second in match table:
     A = [(0, 0), (4,1)]
     C = [(1, 0), (5,1)]
     E = [(2, 0), (6,1)]
@@ -192,13 +201,20 @@ def points_round_of_16(df_r, df_g):
     return points
 
 def clean(rlist, words=['nan', '<NA>']):
-    res = list(rlist)  # make a copy
+    """
+    Remove words from a list
+    """
+    res = list(rlist)  # make a copy of the list
     for word in words:
         res = [r for r in res if r != word]
     return res
 
-
+# Main function
 def evaluate(stage_2=False):
+    """
+    Build a table with the current standings.
+    Optionally, evaluate also stage 2.
+    """
     df_r1, df_r2 = load_results()
     df_a = pd.read_csv(os.path.join(DATA_DIR, 'aliases.csv'))
     aliases = list(df_a['alias'])
@@ -207,7 +223,7 @@ def evaluate(stage_2=False):
     for alias in aliases:
         df_g1, df_g2 = d[alias]
         points_1 = points_from_stage_1(df_r1, df_g1)
-        if stage_2:  # stage 2 has started
+        if stage_2:
             points_2 = points_from_stage_2(df_r2, df_g2)
         else:
             points_2 = 0
@@ -221,9 +237,33 @@ def evaluate(stage_2=False):
     df.insert(0, 'Position', list(range(1, len(df)+1)))
     return df
 
+def test(verbose=False):
+    """
+    Test that all players get full points if results coincide
+    with their predictions.
+    """
+    df_a = pd.read_csv(os.path.join(DATA_DIR, 'aliases.csv'))
+    aliases = list(df_a['alias'])
+    d = load_all_predictions(aliases)
+    for alias in aliases:
+        if verbose:
+            print(f"Testing {alias}")
+        df_r1, df_r2 = load_prediction_csv(alias)  # use guess as result
+        df_g1, df_g2 = d[alias]
+        points_1 = points_from_stage_1(df_r1, df_g1)
+        points_2 = points_from_stage_2(df_r2, df_g2)
+        assert points_1 == 480  # full points stage 1
+        assert points_2 == 244  # full points stage 2
+    print("Passed all tests.")
+
+
 # %%
 if __name__ == '__main__':
-    df = evaluate(stage_2=True)
+    DISPLAY = True
+    # Run test to verify that nothing is broken
+    test()
+    # Evaluate
+    df = evaluate(stage_2=False)
     # Save with today's date
     date_today = datetime.today().strftime('%Y-%m-%d')
     standings_file = os.path.join(OUTPUT_DIR, f'standings_{date_today}.csv')
@@ -233,6 +273,8 @@ if __name__ == '__main__':
     standings_file_no_date = os.path.join(OUTPUT_DIR, 'standings.csv')
     print(f"Saving (and probably overwriting) {standings_file_no_date}")
     df.to_csv(standings_file_no_date, index=False, sep=';')
+    if DISPLAY:
+        display(df)  # works only in Ipython
 
 
 # %%
