@@ -12,6 +12,20 @@ SOURCE_DATA_DIR = os.path.join(ROOTDIR, 'raw_data')
 # %%
 # Functions to extract predictions from the Excel files
 
+def extract_all_emails():
+    """
+    Extract emails from all Excel files
+    """
+    all_files = glob.glob(os.path.join(
+        SOURCE_DATA_DIR, "*.xlsx")
+        )
+    emails = []
+    for file in all_files:
+        df = pd.read_excel(file, sheet_name="Instructions")
+        email = df.iloc[3, 2]
+        emails.append(email)
+    return emails
+
 def load_predictions(file, check_nans=True):
     """
     Load a single prediction file and return alias and prediction df
@@ -114,9 +128,22 @@ def save_predictions_excel(d):
 
 # %%
 if __name__ == '__main__':
+    # Process predictions
     d = load_all_predictions()
     save_predictions(d)
     save_predictions_excel(d)
+
+    # Extract emails
+    emails = extract_all_emails()
+    N_1 = len(emails)
+    emails = list(set(emails))  # get rid or repeated entries
+    emails = [e for e in emails if "@" in str(e)]  # get rid of entries that don't look like emails
+    N_2 = len(emails)
+    print(f"Number of emails: {N_2}. There were {N_1-N_2} repeated/invalid emails.")
+
+    df = pd.DataFrame(emails)
+    filepath = os.path.join(DATA_DIR, "emails.csv")  # make sure that it is not tracked by GH
+    df.to_csv(filepath, index=False, header=False)
 
 
 # %%
