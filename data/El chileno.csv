@@ -1,78 +1,78 @@
-id 1;Team 1;id 2;Team 2;Goals 1;Goals 2
-Group A;;;;;
-51;Qatar;46;Ecuador;0;1
-20;Senegal;10;Netherlands;0;1
-51;Qatar;20;Senegal;0;2
-10;Netherlands;46;Ecuador;2;0
-46;Ecuador;20;Senegal;0;0
-10;Netherlands;51;Qatar;1;0
-Group B;;;;;
-5;England;21;IR Iran;3;0
-15;USA;18;Wales;1;0
-18;Wales;21;IR Iran;1;0
-5;England;15;USA;3;1
-18;Wales;5;England;1;2
-21;IR Iran;15;USA;0;1
-Group C;;;;;
-4;Argentina;49;Saudi Arabia;2;1
-9;Mexico;26;Poland;1;2
-26;Poland;49;Saudi Arabia;3;0
-4;Argentina;9;Mexico;2;0
-26;Poland;4;Argentina;0;1
-49;Saudi Arabia;9;Mexico;0;2
-Group D;;;;;
-11;Denmark;35;Tunisia;1;0
-3;France;42;Australia;4;0
-35;Tunisia;42;Australia;0;1
-3;France;11;Denmark;3;1
-42;Australia;11;Denmark;0;1
-35;Tunisia;3;France;2;5
-Group E;;;;;
-12;Germany;23;Japan;2;0
-7;Spain;31;Costa Rica;1;0
-23;Japan;31;Costa Rica;0;1
-7;Spain;12;Germany;0;1
-23;Japan;7;Spain;1;2
-31;Costa Rica;12;Germany;0;2
-Group F;;;;;
-24;Morocco;16;Croatia;0;2
-2;Belgium;38;Canada;3;2
-2;Belgium;24;Morocco;3;0
-16;Croatia;38;Canada;0;1
-16;Croatia;2;Belgium;0;3
-38;Canada;24;Morocco;2;0
-Group G;;;;;
-14;Switzerland;37;Cameroon;0;1
-1;Brazil;25;Serbia;1;0
-37;Cameroon;25;Serbia;0;1
-1;Brazil;14;Switzerland;2;0
-25;Serbia;14;Switzerland;1;0
-37;Cameroon;1;Brazil;0;3
-Group H;;;;;
-13;Uruguay;29;South Korea;2;0
-8;Portugal;60;Ghana;1;0
-29;South Korea;60;Ghana;1;0
-8;Portugal;13;Uruguay;1;2
-60;Ghana;13;Uruguay;0;2
-29;South Korea;8;Portugal;0;1
-Round of 16;;;;;
-10;Netherlands;15;USA;1;0
-4;Argentina;11;Denmark;2;0
-12;Germany;38;Canada;2;1
-1;Brazil;8;Portugal;2;0
-5;England;20;Senegal;2;0
-3;France;26;Poland;2;1
-2;Belgium;7;Spain;2;0
-13;Uruguay;25;Serbia;2;0
-Quarter final;;;;;
-10;Netherlands;4;Argentina;1;2
-12;Germany;1;Brazil;1;2
-5;England;3;France;7;6
-2;Belgium;13;Uruguay;2;1
-Semi-Final;;;;;
-4;Argentina;1;Brazil;2;1
-5;England;2;Belgium;0;1
-Third place;;;;;
-1;Brazil;5;England;2;1
-Final;;;;;
-4;Argentina;2;Belgium;2;1
+id 1,Team 1,id 2,Team 2,Goals 1,Goals 2
+Group A,,,,,
+51,Qatar,46,Ecuador,0,1
+20,Senegal,10,Netherlands,0,1
+51,Qatar,20,Senegal,0,2
+10,Netherlands,46,Ecuador,2,0
+46,Ecuador,20,Senegal,0,0
+10,Netherlands,51,Qatar,1,0
+Group B,,,,,
+5,England,21,IR Iran,3,0
+15,USA,18,Wales,1,0
+18,Wales,21,IR Iran,1,0
+5,England,15,USA,3,1
+18,Wales,5,England,1,2
+21,IR Iran,15,USA,0,1
+Group C,,,,,
+4,Argentina,49,Saudi Arabia,2,1
+9,Mexico,26,Poland,1,2
+26,Poland,49,Saudi Arabia,3,0
+4,Argentina,9,Mexico,2,0
+26,Poland,4,Argentina,0,1
+49,Saudi Arabia,9,Mexico,0,2
+Group D,,,,,
+11,Denmark,35,Tunisia,1,0
+3,France,42,Australia,4,0
+35,Tunisia,42,Australia,0,1
+3,France,11,Denmark,3,1
+42,Australia,11,Denmark,0,1
+35,Tunisia,3,France,2,5
+Group E,,,,,
+12,Germany,23,Japan,2,0
+7,Spain,31,Costa Rica,1,0
+23,Japan,31,Costa Rica,0,1
+7,Spain,12,Germany,0,1
+23,Japan,7,Spain,1,2
+31,Costa Rica,12,Germany,0,2
+Group F,,,,,
+24,Morocco,16,Croatia,0,2
+2,Belgium,38,Canada,3,2
+2,Belgium,24,Morocco,3,0
+16,Croatia,38,Canada,0,1
+16,Croatia,2,Belgium,0,3
+38,Canada,24,Morocco,2,0
+Group G,,,,,
+14,Switzerland,37,Cameroon,0,1
+1,Brazil,25,Serbia,1,0
+37,Cameroon,25,Serbia,0,1
+1,Brazil,14,Switzerland,2,0
+25,Serbia,14,Switzerland,1,0
+37,Cameroon,1,Brazil,0,3
+Group H,,,,,
+13,Uruguay,29,South Korea,2,0
+8,Portugal,60,Ghana,1,0
+29,South Korea,60,Ghana,1,0
+8,Portugal,13,Uruguay,1,2
+60,Ghana,13,Uruguay,0,2
+29,South Korea,8,Portugal,0,1
+Round of 16,,,,,
+10,Netherlands,15,USA,1,0
+4,Argentina,11,Denmark,2,0
+12,Germany,38,Canada,2,1
+1,Brazil,8,Portugal,2,0
+5,England,20,Senegal,2,0
+3,France,26,Poland,2,1
+2,Belgium,7,Spain,2,0
+13,Uruguay,25,Serbia,2,0
+Quarter final,,,,,
+10,Netherlands,4,Argentina,1,2
+12,Germany,1,Brazil,1,2
+5,England,3,France,7,6
+2,Belgium,13,Uruguay,2,1
+Semi-Final,,,,,
+4,Argentina,1,Brazil,2,1
+5,England,2,Belgium,0,1
+Third place,,,,,
+1,Brazil,5,England,2,1
+Final,,,,,
+4,Argentina,2,Belgium,2,1

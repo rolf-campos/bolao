@@ -85,13 +85,13 @@ def save_predictions(d):
     for alias, pred in d.items():
         filepath = os.path.join(DATA_DIR, f"{alias}.csv")
         print(f"Saving {filepath}")
-        pred.to_csv(filepath, index=False, na_rep='', sep=';')
+        pred.to_csv(filepath, index=False, na_rep='', sep=',')
     # Save a file with all aliases
     aliases = list(d.keys())
     aliases.sort(key=str.lower)  # sort alphabetically
     df = pd.DataFrame(aliases, columns=['alias'])
     print(f"Saving aliases.csv")
-    df.to_csv(os.path.join(DATA_DIR, "aliases.csv"), index=False, sep=';')
+    df.to_csv(os.path.join(DATA_DIR, "aliases.csv"), index=False, sep=',')
     return None
 
 def save_predictions_excel(d):
