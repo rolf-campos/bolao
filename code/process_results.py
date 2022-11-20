@@ -32,7 +32,7 @@ def load_prediction_csv(alias):
     one for the first round, and one for the second.
     """
     file = os.path.join(DATA_DIR, f"{alias}.csv")
-    df = pd.read_csv(file, sep=';')
+    df = pd.read_csv(file, sep=',')
     superfluous_rows = [
         0, 7, 14, 21, 28, 35, 42, 49, 56, 65, 70, 73, 75]
     df_p = df.drop(superfluous_rows)
@@ -261,18 +261,18 @@ def test(verbose=False):
 if __name__ == '__main__':
     DISPLAY = True
     # Run test to verify that nothing is broken
-    test()
+    test(verbose=True)
     # Evaluate
     df = evaluate(stage_2=False)
     # Save with today's date
     date_today = datetime.today().strftime('%Y-%m-%d')
     standings_file = os.path.join(OUTPUT_DIR, f'standings_{date_today}.csv')
     print(f"Saving {standings_file}")
-    df.to_csv(standings_file, index=False, sep=';')
+    df.to_csv(standings_file, index=False, sep=',')
     # and overwrite the version without a date
     standings_file_no_date = os.path.join(OUTPUT_DIR, 'standings.csv')
     print(f"Saving (and probably overwriting) {standings_file_no_date}")
-    df.to_csv(standings_file_no_date, index=False, sep=';')
+    df.to_csv(standings_file_no_date, index=False, sep=',')
     if DISPLAY:
         display(df)  # works only in Ipython
 
