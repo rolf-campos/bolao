@@ -31,8 +31,3 @@ Maximum points in Stage 2: 16 x 3 + 8 x 2 + 8 x 10 + 4 x 10 + 2 x 10 + 40 = 244
 ### Macaco (random)
 - in stage 1, the Macaco chooses goals at random with uniform probability on the support `{0, 1, 2}`;
 - in stage 2, it chooses the team that advances at random, with probability 1/2.
-
-### Donald (wants to make America great again)
-- in stage 1, he predicts that USA will always win by 5-0;
-- because he doesn't care too much about the rest of the world, he doesn't fill out the rest of the table. It is filled with 0-0 and everything undeterminded is resolved by selecting the nation most similar to Russia according to its voting behavior in the United Nations General Assembly;
-- if he does not win, he will not accept the final result.
