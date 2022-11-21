@@ -128,6 +128,8 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+/.vscode/**/*
+
 # Data files that are not tracked and exist only locally
 /raw_data/*.xlsx
 /data/*.xlsx
