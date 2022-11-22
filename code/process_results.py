@@ -261,7 +261,7 @@ def test(verbose=False):
 if __name__ == '__main__':
     DISPLAY = True
     # Run test to verify that nothing is broken
-    test(verbose=True)
+    test(verbose=False)
     # Evaluate
     df = evaluate(stage_2=False)
     # Save with today's date
