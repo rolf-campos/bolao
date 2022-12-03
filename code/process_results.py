@@ -263,7 +263,7 @@ if __name__ == '__main__':
     # Run test to verify that nothing is broken
     test(verbose=False)
     # Evaluate
-    df = evaluate(stage_2=False)
+    df = evaluate(stage_2=True)
     # Save with today's date
     date_today = datetime.today().strftime('%Y-%m-%d')
     standings_file = os.path.join(OUTPUT_DIR, f'standings_{date_today}.csv')
